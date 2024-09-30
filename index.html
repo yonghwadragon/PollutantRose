@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>오염물질 바람장미 그래프 애니메이션</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>오염물질 바람장미 그래프 애니메이션</h1>
+        
+        <div class="controls">
+            <label for="pollutant-select">오염물질 선택:</label>
+            <select id="pollutant-select">
+                <option value="CO">CO</option>
+                <option value="NO2">NO₂</option>
+                <option value="O3">O₃</option>
+                <option value="pm2.5">PM₂.5</option>
+                <option value="pm10">PM₁₀</option>
+            </select>
+            
+            <button id="play-pause-btn">재생</button>
+        </div>
+        
+        <div class="image-container">
+            <img id="rose-image" src="" alt="바람장미 그래프">
+            <div id="day-indicator">Day 1</div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

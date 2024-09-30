@@ -1,0 +1,65 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+select {
+    padding: 5px 10px;
+    font-size: 1em;
+}
+
+button {
+    padding: 5px 15px;
+    font-size: 1em;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.image-container {
+    position: relative;
+}
+
+#rose-image {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+#day-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(255,255,255,0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333333;
+}
