@@ -27,12 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 업데이트 함수
     function updateImages() {
         if (currentGraphType === 'windRose') {
-            pollutantImage.src = `${currentPollutant}/month${currentMonth}.png`;
+            pollutantImage.src = `PM2.5/month${currentMonth}.png`;
             graphTitle.textContent = `${currentPollutant.toUpperCase()} 바람장미 그래프`;
             currentMonthIndicator.textContent = `${currentMonth}월`;
         } else if (currentGraphType === 'sectorComparison') {
-            sectorImage.src = `${currentPollutant}_sector_comparison/${currentPollutant.toUpperCase()}_sector_comparison.png`;
-            sectorGraphTitle.textContent = `${currentPollutant.toUpperCase()} 섹터별 농도 비교`;
+            // 정확한 대소문자 경로 설정
+            const folderName = currentPollutant === 'PM2.5' ? 'PM2.5_sector_comparison' : 'PM10_sector_comparison';
+            const fileName = `${currentPollutant}_sector_comparison.png`;
+            sectorImage.src = `${folderName}/${fileName}`;
+            sectorGraphTitle.textContent = `${currentPollutant} 섹터별 농도 비교`;
         }
     }
 
