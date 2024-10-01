@@ -1,13 +1,19 @@
 // main.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM 요소 참조
+    const graphTypeSelect = document.getElementById('graph-type-select');
     const pollutantSelect = document.getElementById('pollutant-select');
     const graphTitle = document.getElementById('graph-title');
     const pollutantImage = document.getElementById('pollutant-image');
+    const sectorGraphTitle = document.getElementById('sector-graph-title');
+    const sectorImage = document.getElementById('sector-image');
     const currentMonthIndicator = document.getElementById('current-month');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
+    const windRoseControls = document.querySelector('.wind-rose-controls');
+    const windRoseIndicator = document.querySelector('.wind-rose-indicator');
 
     const totalMonths = 9;
     let currentMonth = 1;
@@ -16,12 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalId;
 
     let currentPollutant = pollutantSelect.value;
+    let currentGraphType = graphTypeSelect.value;
 
     // 업데이트 함수
     function updateImages() {
-        pollutantImage.src = `${currentPollutant}/month${currentMonth}.png`;
-        graphTitle.textContent = currentPollutant.toUpperCase();
-        currentMonthIndicator.textContent = `${currentMonth}월`;
+        if (currentGraphType === 'windRose') {
+            pollutantImage.src = `${currentPollutant}/month${currentMonth}.png`;
+            graphTitle.textContent = `${currentPollutant.toUpperCase()} 바람장미 그래프`;
+            currentMonthIndicator.textContent = `${currentMonth}월`;
+        } else if (currentGraphType === 'sectorComparison') {
+            sectorImage.src = `${currentPollutant}_sector_comparison/${currentPollutant.toUpperCase()}_sector_comparison.png`;
+            sectorGraphTitle.textContent = `${currentPollutant.toUpperCase()} 섹터별 농도 비교`;
+        }
     }
 
     // 다음 월로 이동
@@ -55,6 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
         updateImages();
     }
 
+    // 그래프 유형 변경 시 처리
+    function changeGraphType() {
+        currentGraphType = graphTypeSelect.value;
+        if (currentGraphType === 'windRose') {
+            document.querySelector('.wind-rose').classList.remove('hidden');
+            document.querySelector('.sector-comparison').classList.add('hidden');
+            windRoseControls.classList.remove('hidden');
+            windRoseIndicator.classList.remove('hidden');
+            updateImages();
+        } else if (currentGraphType === 'sectorComparison') {
+            document.querySelector('.wind-rose').classList.add('hidden');
+            document.querySelector('.sector-comparison').classList.remove('hidden');
+            windRoseControls.classList.add('hidden');
+            windRoseIndicator.classList.add('hidden');
+            updateImages();
+            clearInterval(intervalId);
+            playPauseBtn.textContent = '재생';
+            isPlaying = false;
+        }
+    }
+
     // 이벤트 리스너 설정
     playPauseBtn.addEventListener('click', togglePlayPause);
     nextBtn.addEventListener('click', () => {
@@ -73,13 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     pollutantSelect.addEventListener('change', () => {
         changePollutant();
-        if (isPlaying) {
+        if (isPlaying && currentGraphType === 'windRose') {
             clearInterval(intervalId);
             intervalId = setInterval(nextMonth, intervalTime);
         }
     });
+    graphTypeSelect.addEventListener('change', () => {
+        changeGraphType();
+    });
 
     // 초기 업데이트 및 애니메이션 시작
     updateImages();
-    intervalId = setInterval(nextMonth, intervalTime);
+    if (currentGraphType === 'windRose') {
+        intervalId = setInterval(nextMonth, intervalTime);
+    }
 });

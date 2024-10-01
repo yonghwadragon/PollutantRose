@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>바람장미 애니메이션</title>
+    <title>바람장미 및 섹터별 농도 비교</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>미세먼지 및 초미세먼지 바람장미 그래프</h1>
+        <h1>미세먼지 및 초미세먼지 시각화</h1>
+        
+        <!-- 그래프 유형 선택 -->
+        <div class="controls">
+            <label for="graph-type-select">그래프 유형 선택:</label>
+            <select id="graph-type-select">
+                <option value="windRose">바람장미 그래프</option>
+                <option value="sectorComparison">섹터별 농도 비교</option>
+            </select>
+        </div>
+
+        <!-- 오염물질 선택 -->
         <div class="controls">
             <label for="pollutant-select">오염물질 선택:</label>
             <select id="pollutant-select">
@@ -16,18 +27,31 @@
                 <option value="pm10">PM10</option>
             </select>
         </div>
+
+        <!-- 그래프 표시 영역 -->
         <div class="graph-container">
-            <div class="graph">
-                <h2 id="graph-title">PM2.5</h2>
+            <!-- 바람장미 그래프 -->
+            <div class="graph wind-rose">
+                <h2 id="graph-title">PM2.5 바람장미 그래프</h2>
                 <img id="pollutant-image" src="pm2.5/month1.png" alt="PM2.5 바람장미 그래프">
             </div>
+            
+            <!-- 섹터별 농도 비교 그래프 (초기에는 숨김) -->
+            <div class="graph sector-comparison hidden">
+                <h2 id="sector-graph-title">PM2.5 섹터별 농도 비교</h2>
+                <img id="sector-image" src="PM2.5_sector_comparison/PM2.5_sector_comparison.png" alt="PM2.5 섹터별 농도 비교 그래프">
+            </div>
         </div>
-        <div class="controls-navigation">
+
+        <!-- 애니메이션 제어 버튼 (바람장미 그래프에만 표시) -->
+        <div class="controls-navigation wind-rose-controls">
             <button id="prev-btn">이전</button>
             <button id="play-pause-btn">일시정지</button>
             <button id="next-btn">다음</button>
         </div>
-        <div class="month-indicator">
+
+        <!-- 현재 월 표시 (바람장미 그래프에만 표시) -->
+        <div class="month-indicator wind-rose-indicator">
             <p>현재 월: <span id="current-month">1월</span></p>
         </div>
     </div>
