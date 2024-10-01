@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalMonths = 9;
     let currentMonth = 1;
     let isPlaying = true;
-    const intervalTime = 2000; // 2초
+    const intervalTime = 500; // 0.5초
     let intervalId;
 
     let currentPollutant = pollutantSelect.value;
@@ -76,12 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
             windRoseControls.classList.remove('hidden');
             windRoseIndicator.classList.remove('hidden');
             updateImages();
+            // 애니메이션 시작
+            if (!isPlaying) {
+                intervalId = setInterval(nextMonth, intervalTime);
+                playPauseBtn.textContent = '일시정지';
+                isPlaying = true;
+            }
         } else if (currentGraphType === 'sectorComparison') {
             document.querySelector('.wind-rose').classList.add('hidden');
             document.querySelector('.sector-comparison').classList.remove('hidden');
             windRoseControls.classList.add('hidden');
             windRoseIndicator.classList.add('hidden');
             updateImages();
+            // 애니메이션 일시정지
             clearInterval(intervalId);
             playPauseBtn.textContent = '재생';
             isPlaying = false;
@@ -92,14 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
     playPauseBtn.addEventListener('click', togglePlayPause);
     nextBtn.addEventListener('click', () => {
         nextMonth();
-        if (isPlaying) {
+        if (isPlaying && currentGraphType === 'windRose') {
             clearInterval(intervalId);
             intervalId = setInterval(nextMonth, intervalTime);
         }
     });
     prevBtn.addEventListener('click', () => {
         prevMonthFunc();
-        if (isPlaying) {
+        if (isPlaying && currentGraphType === 'windRose') {
             clearInterval(intervalId);
             intervalId = setInterval(nextMonth, intervalTime);
         }

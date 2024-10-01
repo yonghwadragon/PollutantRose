@@ -120,13 +120,79 @@ h1 {
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .graph-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .controls-navigation button {
         margin: 10px 5px;
         width: 120px;
     }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .controls label {
+        font-size: 0.9em;
+    }
+
+    .controls select {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
 
     .graph {
+        padding: 15px;
         max-width: 90%;
+    }
+
+    .graph h2 {
+        font-size: 1.3em;
+    }
+
+    .controls-navigation button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 0.9em;
+        width: 100px;
+    }
+
+    .month-indicator {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .controls label {
+        font-size: 0.8em;
+    }
+
+    .controls select {
+        padding: 4px 8px;
+        font-size: 0.8em;
+    }
+
+    .graph h2 {
+        font-size: 1.1em;
+    }
+
+    .controls-navigation button {
+        padding: 8px 16px;
+        margin: 5px;
+        font-size: 0.8em;
+        width: 90px;
+    }
+
+    .month-indicator {
+        font-size: 0.9em;
     }
 }
