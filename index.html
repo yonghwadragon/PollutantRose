@@ -2,32 +2,35 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>오염물질 바람장미 그래프 애니메이션</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바람장미 애니메이션</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>오염물질 바람장미 그래프 애니메이션</h1>
-        
+        <h1>미세먼지 및 초미세먼지 바람장미 그래프</h1>
         <div class="controls">
             <label for="pollutant-select">오염물질 선택:</label>
             <select id="pollutant-select">
-                <option value="CO">CO</option>
-                <option value="NO2">NO₂</option>
-                <option value="O3">O₃</option>
                 <option value="pm2.5">PM₂.5</option>
                 <option value="pm10">PM₁₀</option>
             </select>
-            
-            <button id="play-pause-btn">재생</button>
         </div>
-        
-        <div class="image-container">
-            <img id="rose-image" src="" alt="바람장미 그래프">
-            <div id="day-indicator">Day 1</div>
+        <div class="graph-container">
+            <div class="graph">
+                <h2 id="graph-title">PM2.5</h2>
+                <img id="pollutant-image" src="pm2.5/month1.png" alt="PM2.5 바람장미 그래프">
+            </div>
+        </div>
+        <div class="controls-navigation">
+            <button id="prev-btn">이전</button>
+            <button id="play-pause-btn">일시정지</button>
+            <button id="next-btn">다음</button>
+        </div>
+        <div class="month-indicator">
+            <p>현재 월: <span id="current-month">1월</span></p>
         </div>
     </div>
-    
     <script src="main.js"></script>
 </body>
 </html>

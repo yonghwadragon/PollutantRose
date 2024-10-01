@@ -1,65 +1,103 @@
-/* styles.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.container {
-    max-width: 800px;
-    margin: 50px auto;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
     text-align: center;
 }
 
 h1 {
-    margin-bottom: 30px;
-    color: #333333;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 .controls {
     margin-bottom: 20px;
 }
 
-label {
+.controls label {
+    font-size: 16px;
     margin-right: 10px;
-    font-size: 1.1em;
 }
 
-select {
+.controls select {
     padding: 5px 10px;
-    font-size: 1em;
+    font-size: 16px;
 }
 
-button {
-    padding: 5px 15px;
-    font-size: 1em;
-    margin-left: 20px;
-    cursor: pointer;
+.graph-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-.image-container {
-    position: relative;
+.graph {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* 이미지 크기 조정을 위한 최대 너비 설정 */
 }
 
-#rose-image {
-    width: 100%;
-    max-width: 700px;
+.graph h2 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.graph img {
+    max-width: 100%;
     height: auto;
-    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* 이미지 크기를 작게 설정 */
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
 }
 
-#day-indicator {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgba(255,255,255,0.7);
-    padding: 5px 10px;
+.controls-navigation {
+    margin: 20px 0;
+}
+
+.controls-navigation button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border: none;
     border-radius: 5px;
-    font-weight: bold;
-    color: #333333;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.controls-navigation button:hover {
+    background-color: #0056b3;
+}
+
+.month-indicator {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .graph-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .controls-navigation button {
+        margin: 10px 5px;
+        width: 100px;
+    }
 }
